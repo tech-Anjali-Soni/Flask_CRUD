@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} {{ title }} {% endblock %}
+{% block content %}
+<form action = "" method = "POST">
+    {{ form.hidden_tag() }}
+    <div class = "mb-3">
+        {{ form.rollno.label(class = "form-label")}}
+        {{ form.rollno(class="form-control")}} </div>
+        <div class = "mb-3">
+            {{ form.name.label(class = " form-label")}}
+            {{ form.name(class="form-control")}} </div>
+        <div class = "mb-3">
+            {{ form.feesamount.label(class = " form-label")}}
+            {{ form.feesamount(class="form-control")}} </div>
+        <div class = "mb-3">
+            {{ form.paymentmode.label(class = " form-label")}}
+            {{ form.paymentmode(class="form-select")}} </div>
+        <div>
+        {{ form.submit(class = "btn btn-primary")}}
+    </div>
+</form>
+{% endblock %}

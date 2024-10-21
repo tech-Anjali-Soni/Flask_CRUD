@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{%  block title %}Home{% endblock %}
+{% block content %}
+<form action = "{{ url_for('main.search_student') }}" method="POST">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.search(class="form-control", placeholder="Search by Roll No or Name") }}
+    </div>
+    <div>
+        {{ form.submit(class="btn btn-primary") }} </div> </form>
+    <table class = "table table-striped mt-4">
+        <thead> <tr>
+            <th>Roll No</th> <th>Name</th> <th>Fees Amount</th>
+            <th>Payment Mode</th> <th>Actions</th> </tr>
+        </thead> </tbody>
+        {% for student in students %}
+        <tr><td>{{ student.rollno }}</td><td>{{ student.name }}</td>
+            <td>{{ student.feesamount }}</td><td>{{ student.paymentmode }}</td>
+            <td>
+                <a href="{{ url_for('main.update_student',id=student.id) }}" class = "btn btn-warning">Edit</a>
+                <a href="{{ url_for('main.delete_student',id=student.id) }}" class = "btn btn-danger">Delete</a>
+            </td> </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('main.export_to_pdf') }}" class="btn btn-secondary">Export to PDF </a>
+    {% endblock %}
